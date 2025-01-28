@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scientific Calculator</title>
+    <link rel="stylesheet" href="Calculator.css">
+    <script src="calculator.js"></script>
+</head>
+<body>
+
+
+<button class="menu-toggle" id="menu-toggle" onclick="toggleMenu()">☰</button>
+
+
+<div id="side-menu" class="side-menu">
+ 
+
+    <div class="side-menu-header">
+        <button class="side-button" id="close-btn" onclick="toggleMenu()">✖</button>
+        <button class="side-button" id="dark-mode-toggle" onclick="toggleDarkMode()">🌙</button>
+        <button class="side-button" onclick="toggleHistory()">📝</button>
+    </div>
+
+    <div id="history-section" class="history-container" style="display: none;">
+        <h3>History</h3>
+        <ul id="history-list"></ul>
+    </div>
+</div>
+
+
+    <div class="calculator-container">
+        <input type="text" id="display" class="display" >
+        <table class="button-container">
+            <!-- Row 1 -->
+            <tr>
+                
+                <td><button class="button" onclick="appendToDisplay('^')">x<sup>e</sup></button></td>
+                <td><button class="button" onclick="appendToDisplay('(')">(</button></td>
+                <td><button class="button" onclick="appendToDisplay(')')">)</button></td>
+                <td><button class="button" onclick="backDisplay()">⌫</button></td>
+                <td><button class="button" onclick="clearDisplay()">C</button></td>
+            </tr>
+            <!-- Row 2 -->
+            <tr>
+                <td><button class="button" onclick="appendToDisplay('.')">.</button></td>
+                <td><button class="button" onclick="appendToDisplay('^2')">x²</button></td>
+                <td><button class="button" onclick="appendToDisplay('sin(')">sin</button></td>
+                <td><button class="button" onclick="appendToDisplay('cos(')">cos</button></td>
+                <td><button class="button" onclick="appendToDisplay('tan(')">tan</button></td>
+            </tr>
+            <!-- Row 3 -->
+            <tr>
+                <td><button class="button" onclick="appendToDisplay('√(')">√</button></td>
+                <td><button class="button" onclick="appendToDisplay('sin⁻¹(')">sin⁻¹</button></td>
+                <td><button class="button" onclick="appendToDisplay('cos⁻¹(')">cos⁻¹</button></td>
+                <td><button class="button" onclick="appendToDisplay('tan⁻¹(')">tan⁻¹</button></td>
+                <td><button class="button" onclick="appendToDisplay('!')">x!</button></td>
+            </tr>
+            <!-- Row 4 -->
+            <tr>
+                <td><button class="button" onclick="appendToDisplay('log(')">log</button></td>
+                <td><button class="button" onclick="appendToDisplay('ln(')">ln</button></td>
+                <td><button class="button" onclick="appendToDisplay('π')">π</button></td>
+                <td><button class="button" onclick="moveCursorLeft()">←</button></td>
+                <td><button class="button" onclick="moveCursorRight()">→</button></td>
+            </tr>            
+            <!-- Row 5 -->
+            <tr>
+                <td><button class="button" onclick="appendToDisplay('7')">7</button></td>
+                <td><button class="button" onclick="appendToDisplay('8')">8</button></td>
+                <td><button class="button" onclick="appendToDisplay('9')">9</button></td>
+                <td><button class="button" onclick="appendToDisplay(' x ')">x</button></td>
+                <td><button class="button" id = "divide-button" onclick="appendToDisplay(' ÷ ')">÷</button></td>
+            </tr>
+            <!-- Row 6 -->
+            <tr>
+                <td><button class="button" onclick="appendToDisplay('4')">4</button></td>
+                <td><button class="button" onclick="appendToDisplay('5')">5</button></td>
+                <td><button class="button" onclick="appendToDisplay('6')">6</button></td>
+                <td><button class="button" onclick="appendToDisplay(' + ')">+</button></td>
+                <td><button class="button" onclick="appendToDisplay(' - ')">-</button></td>
+            </tr>
+            <!-- Row 7 -->
+            <tr>
+                <td><button class="button" onclick="appendToDisplay('1')">1</button></td>
+                <td><button class="button" onclick="appendToDisplay('2')">2</button></td>
+                <td><button class="button" onclick="appendToDisplay('3')">3</button></td>
+                <td><button class="button" onclick="appendToDisplay('0')">0</button></td>
+                <td><button class="button" onclick="calculate()">=</button></td>
+            </tr>
+        </table>
+    </div>
+    
+    
+
+    
+</body>
+</html>
