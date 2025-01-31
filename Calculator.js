@@ -222,14 +222,13 @@ function toggleHistory() {
     const historySection = document.getElementById('history-section');
     historySection.style.display = historySection.style.display === 'block' ? 'none' : 'block';
 }
-// Allow the = key to also trigger the calculation
+
 document.addEventListener('keydown', function (event) {
     if (event.key === '=') {
         event.preventDefault(); 
         calculate(); 
     }
 
-    // Allow the Enter key to also trigger the calculation
     if (event.key === 'Enter') {
         event.preventDefault();
         calculate(); 
