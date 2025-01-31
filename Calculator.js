@@ -20,7 +20,7 @@ function clearDisplay() {
     document.getElementById('display').value = '';
 }
 
-// Handles backspace (deletes the character before the cursor)
+// Handles backspace
 function backDisplay() {
     const display = document.getElementById('display');
     let cursorPos = display.selectionStart;
@@ -39,14 +39,13 @@ function calculate() {
     let expression = document.getElementById('display').value;
 
     try {
-        // Validate the expression to avoid errors
+
         if (!isValidExpression(expression)) {
             throw new Error('Invalid Expression');
         }
 
         let result = evaluateExpression(expression);
 
-        // Handle math errors like division by zero
         if (result === Infinity || result === -Infinity || isNaN(result)) {
             document.getElementById('display').value = 'Math Error';
         } else {
@@ -223,16 +222,16 @@ function toggleHistory() {
     const historySection = document.getElementById('history-section');
     historySection.style.display = historySection.style.display === 'block' ? 'none' : 'block';
 }
-
+// Allow the = key to also trigger the calculation
 document.addEventListener('keydown', function (event) {
     if (event.key === '=') {
-        event.preventDefault(); // Prevent the default action (inserting `=` into the display)
-        calculate(); // Trigger the calculation when the `=` key is pressed
+        event.preventDefault(); 
+        calculate(); 
     }
 
     // Allow the Enter key to also trigger the calculation
     if (event.key === 'Enter') {
         event.preventDefault();
-        calculate(); // Trigger the calculation when Enter is pressed
+        calculate(); 
     }
 });
