@@ -52,7 +52,7 @@ function calculate() {
         } else {
             result = roundToEightDecimalPlaces(result);
             document.getElementById('display').value = result;
-            addToHistory(expression, result); // Store the result in history
+            addToHistory(expression, result);
         }
     } catch (e) {
         console.error('Calculation error:', e);
@@ -62,19 +62,21 @@ function calculate() {
 
 // Validates the expression to ensure it's safe
 function isValidExpression(expression) {
-    const allowedChars = /^[0-9+\-*/^().πsin⁻¹cos⁻¹tan⁻¹√logln! ]*$/;
-    return allowedChars.test(expression); // Allow only valid characters
+    const allowedChars = /^[0-9+\-*x÷/^().πsin⁻¹cos⁻¹tan⁻¹√logln! ]*$/;
+    return allowedChars.test(expression); 
 }
 
 // Evaluates the mathematical expression securely by converting operators and functions
 function evaluateExpression(expression) {
     expression = expression.replace(/x/g, '*')
-        .replace(/X/g, '*')
+        .replace(/x/g, '*')
         .replace(/÷/g, '/')
         .replace(/\^/g, '**')
         .replace(/√/g, 'Math.sqrt')
         .replace(/π/g, 'Math.PI');
     
+    expression = expression.replace(/\s+/g, '');
+
     expression = handleLogFunctions(expression);
     expression = handleTrigFunctions(expression);
     expression = handleFactorialExpression(expression);
@@ -222,3 +224,15 @@ function toggleHistory() {
     historySection.style.display = historySection.style.display === 'block' ? 'none' : 'block';
 }
 
+document.addEventListener('keydown', function (event) {
+    if (event.key === '=') {
+        event.preventDefault(); // Prevent the default action (inserting `=` into the display)
+        calculate(); // Trigger the calculation when the `=` key is pressed
+    }
+
+    // Allow the Enter key to also trigger the calculation
+    if (event.key === 'Enter') {
+        event.preventDefault();
+        calculate(); // Trigger the calculation when Enter is pressed
+    }
+});
