@@ -65,43 +65,37 @@ function isValidExpression(expression) {
     return allowedChars.test(expression); 
 }
 
-// Evaluates the mathematical expression securely by converting operators and functions
+// Evaluates the mathematical expression  by converting operators and functions
 function evaluateExpression(expression) {
     expression = expression.replace(/x/g, '*')
-        .replace(/x/g, '*')
         .replace(/÷/g, '/')
         .replace(/\^/g, '**')
         .replace(/√/g, 'Math.sqrt')
-        .replace(/π/g, 'Math.PI');
-    
-    expression = expression.replace(/\s+/g, '');
-
-    expression = handleLogFunctions(expression);
-    expression = handleTrigFunctions(expression);
-    expression = handleFactorialExpression(expression);
+        .replace(/π/g, 'Math.PI')
+        .replace(/\s+/g, '')
+        .replace(/log\(/g, 'Math.log10(')
+        .replace(/ln\(/g, 'Math.log(');
+        
+    expression = handleTrigFunctions(expression); 
+    expression = handleFactorialExpression(expression);    
 
     return parseMathExpression(expression);
 }
 
-// Handles logarithms (log and ln)
-function handleLogFunctions(expression) {
-    expression = expression.replace(/log\(/g, 'Math.log10(');
-    expression = expression.replace(/ln\(/g, 'Math.log(');
-    return expression;
-}
 
 // Handles trigonometric and inverse trigonometric functions in the expression
 function handleTrigFunctions(expression) {
-    expression = expression.replace(/(sin|cos|tan)\(([^)]+)\)/g, function (match, func, args) {
+    expression = expression.replace(/(sin|cos|tan)\(([^)]+)\)/g, (match, func, args) => {
         if (!args || isNaN(args)) {
             console.error(`Invalid argument for function ${func}: ${args}`);
             return match;
         }
         args = convertToRadians(args);
-        return 'Math.' + func + '(' + args + ')';
+        return `Math.${func}(${args})`;
     });
+    
 
-    expression = expression.replace(/(sin⁻¹|cos⁻¹|tan⁻¹)\(([^)]+)\)/g, function (match, func, args) {
+    expression = expression.replace(/(sin⁻¹|cos⁻¹|tan⁻¹)\(([^)]+)\)/g,  (match, func, args) => {
         if (!args || isNaN(args)) {
             console.error(`Invalid argument for function ${func}: ${args}`);
             return match;
