@@ -36,7 +36,7 @@ body {
     margin-bottom: 20px;
     border: 1px solid #aca9a9;
     border-radius: 5px;
-    background-color: #f1f1f1;
+    background-color: #e4e4e4;
     color: rgb(0, 0, 0);
     outline: none;
     caret-color: #020202;
@@ -67,7 +67,6 @@ body {
 .button {
     font-size: 18px;
     padding: 15px;
-    background-color: #ffffff;
     color: rgb(0, 0, 0);
     border: 1px solid #9c9ea0;
     text-align: center;
@@ -78,6 +77,13 @@ body {
     height: 50px;
 }
 
+.number{
+    background-color: #ffffff; 
+}
+
+.otherbtn{
+    background-color: #eeeeee;
+}
 /* Hover effect on the buttons */
 .button:hover {
     background-color: #e6e6e6;
